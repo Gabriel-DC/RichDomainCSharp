@@ -12,7 +12,7 @@ namespace Store.Domain.Entities
         public Guid Id { get; private set; }
 
         private readonly List<ValidationResult> _validationResults = new();
-        public bool IsValid => !(ValidationResults.Count > 0);
+        public bool IsValid => ValidationResults.Count == 0;
 
         public IReadOnlyCollection<ValidationResult> ValidationResults => _validationResults;
 
