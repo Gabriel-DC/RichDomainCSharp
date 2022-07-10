@@ -12,9 +12,9 @@ namespace Store.Tests.Entities
     {
         private readonly Customer _customer = new Customer("Gabriel", "gabriel@gabriel.com");
         private readonly Product _product = new Product("Chocolate", 10, true);
-        private readonly Discount _discount = new Discount(10, DateTime.Now.AddDays(5));
-        private readonly Discount _expiredDiscount = new Discount(10, DateTime.Now.AddDays(-5));
-        private readonly Discount _InvalidDiscount = new Discount(10, DateTime.Now);
+        private readonly Discount _discount = new Discount(10, DateTime.Now.AddDays(5), "CUPOM10");
+        private readonly Discount _expiredDiscount = new Discount(10, DateTime.Now.AddDays(-5), "CUPOMJUNHO10");
+        private readonly Discount _InvalidDiscount = new Discount(10, DateTime.Now, "CUPOM");
 
         [TestMethod]
         [TestCategory("Domain")]

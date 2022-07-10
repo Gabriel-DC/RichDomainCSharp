@@ -4,12 +4,14 @@ namespace Store.Domain.Entities
 {
     public class Discount : Entity
     {
-        public Discount(decimal amount, DateTime expireDate)
+        public Discount(decimal amount, DateTime expireDate, string code)
         {
             Amount = amount;
             ExpireDate = expireDate;
+            Code = code;
         }
 
+        public string Code { get; set; }
         public decimal Amount { get; private set; }
         public DateTime ExpireDate { get; private set; }
 
