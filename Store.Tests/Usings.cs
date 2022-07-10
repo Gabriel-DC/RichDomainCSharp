@@ -5,3 +5,5 @@ global using Store.Domain.Repositories.Interfaces;
 global using Store.Domain.Repositories;
 global using Store.Tests.Repositories;
 global using Store.Domain.Queries;
+global using Store.Domain.Commands.Interfaces;
+global using Store.Domain.Commands;
