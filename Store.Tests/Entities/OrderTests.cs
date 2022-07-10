@@ -56,7 +56,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 0, _discount);
             order.AddItem(null!, 5);
-            Assert.AreEqual(order.Items.Count, 0);
+            Assert.AreEqual(0, order.Items.Count);
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 0, _discount);
             order.AddItem(_product, 0);
-            Assert.AreEqual(order.Items.Count, 0);
+            Assert.AreEqual(0, order.Items.Count);
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 10, _discount);
             order.AddItem(_product, 5);
-            Assert.AreEqual(order.Total(), 50);
+            Assert.AreEqual(50, order.Total());
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 0, _expiredDiscount);
             order.AddItem(_product, 6);
-            Assert.AreEqual(order.Total(), 60);
+            Assert.AreEqual(60, order.Total());
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 10, null!);
             order.AddItem(_product, 5);
-            Assert.AreEqual(order.Total(), 60);
+            Assert.AreEqual(60, order.Total());
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 0, _discount);
             order.AddItem(_product, 6);
-            Assert.AreEqual(order.Total(), 50);
+            Assert.AreEqual(50, order.Total());
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace Store.Tests.Entities
         {
             var order = new Order(_customer, 10, null!);
             order.AddItem(_product, 5);
-            Assert.AreEqual(order.Total(), 60);
+            Assert.AreEqual(60, order.Total());
         }
 
         [TestMethod]
