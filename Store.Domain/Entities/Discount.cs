@@ -1,3 +1,5 @@
+using Flunt.Validations;
+
 namespace Store.Domain.Entities
 {
     public class Discount : Entity
