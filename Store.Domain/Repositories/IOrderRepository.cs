@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Store.Domain.Entities;
 
-namespace Store.Domain.Repositories
+namespace Store.Domain.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
