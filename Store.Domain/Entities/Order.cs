@@ -14,6 +14,8 @@ namespace Store.Domain.Entities
             DeliveryFee = deliveryFee;
             Discount = discount;
             Items = new List<OrderItem>();
+
+            ValidateEntities(customer, discount!);
         }
 
         [Required(ErrorMessage = "Cliente inválido")]
