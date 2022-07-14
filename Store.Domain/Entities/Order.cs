@@ -1,13 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using Store.Domain.Enums;
 
 namespace Store.Domain.Entities
 {
-    public class Order
+    public class Order : Entity
     {
-        public Order(
-            Customer customer,
-            decimal deliveryFee,
-            Discount discount)
+        public Order(Customer customer, decimal deliveryFee, Discount? discount)
         {
             Customer = customer;
             Date = DateTime.Now;
@@ -18,24 +16,22 @@ namespace Store.Domain.Entities
             Items = new List<OrderItem>();
         }
 
+        [Required(ErrorMessage = "Cliente inválido")]
         public Customer Customer { get; private set; }
         public DateTime Date { get; private set; }
         public EOrderStatus Status { get; private set; }
         public decimal DeliveryFee { get; set; }
-        public Discount Discount { get; private set; }
+        public Discount? Discount { get; private set; }
         public string Number { get; private set; }
+
+        [MinLength(1, ErrorMessage = "O pedido não possui itens")]
         public IList<OrderItem> Items { get; private set; }
 
         public void AddItem(Product product, int quantity)
         {
-            if (product == null)
-                return;
-
-            if (quantity <= 0)
-                return;
-
             var item = new OrderItem(product, quantity);
-            Items.Add(item);
+            if (item.IsValid())
+                Items.Add(item);
         }
 
         public decimal Total()

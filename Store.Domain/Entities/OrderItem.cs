@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Store.Domain.Entities
 {
     public class OrderItem : Entity
@@ -9,11 +11,14 @@ namespace Store.Domain.Entities
             Quantity = quantity;
         }
 
+        [Required(ErrorMessage = "Produto obrigatório")]
         public Product Product { get; private set; }
+
         public decimal Price { get; private set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "A quantidade deve ser maior ou igual a 1")]
         public int Quantity { get; private set; }
 
-        public decimal Total()
-            => Price * Quantity;
+        public decimal Total() => Price * Quantity;
     }
 }
