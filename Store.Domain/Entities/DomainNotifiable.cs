@@ -13,6 +13,14 @@ namespace Store.Domain.Entities
 
         public IReadOnlyCollection<ValidationResult> ValidationResults => _validationResults;
 
+        public (List<ValidationResult> Results, bool IsValid) Revalidate()
+        {
+            _validationResults.Clear();
+            var contexto = new ValidationContext(this, null, null);
+            Validator.TryValidateObject(this, contexto, _validationResults, true);
+            return (Results: _validationResults, IsValid: Valid);
+        }
+
         public (List<ValidationResult> Results, bool IsValid) Validate()
         {
             var contexto = new ValidationContext(this, null, null);
@@ -29,8 +37,12 @@ namespace Store.Domain.Entities
         public virtual bool IsValid()
             => this.Validate().IsValid;
 
-        public void ClearNotifications()
-            => _validationResults.Clear();
+        public DomainNotifiable ClearNotifications()
+        {
+            _validationResults.Clear();
+            return this;
+        }
+
 
         public void ClearAllNotifications(params Entity[]? entities)
         {
