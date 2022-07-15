@@ -25,6 +25,6 @@ namespace Store.Domain.Entities
             => DateTime.Compare(DateTime.Now, ExpireDate) > 0;
 
         public decimal Value()
-            => IsExpired() ? 0 : Amount;
+            => (!Valid || IsExpired()) ? 0 : Amount;
     }
 }

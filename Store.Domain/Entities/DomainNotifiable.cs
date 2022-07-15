@@ -9,7 +9,7 @@ namespace Store.Domain.Entities
     public class DomainNotifiable
     {
         private readonly List<ValidationResult> _validationResults = new();
-        private bool _isValid => ValidationResults.Count == 0;
+        public bool Valid => ValidationResults.Count == 0;
 
         public IReadOnlyCollection<ValidationResult> ValidationResults => _validationResults;
 
@@ -17,7 +17,7 @@ namespace Store.Domain.Entities
         {
             var contexto = new ValidationContext(this, null, null);
             Validator.TryValidateObject(this, contexto, _validationResults, true);
-            return (Results: _validationResults, IsValid: _isValid);
+            return (Results: _validationResults, IsValid: Valid);
         }
 
         public void AddNotification(string errorMessage)
