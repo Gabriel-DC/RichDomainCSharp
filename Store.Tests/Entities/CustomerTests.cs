@@ -13,7 +13,7 @@ namespace Store.Tests.Entities
         [TestCategory("Domain")]
         public void Dado_um_cliente_com_o_nome_vazio_o_mesmo_deve_ser_invalido()
         {
-            var customer = new Customer("", "gabriel@gabriel.com");
+            var customer = new Customer(string.Empty, "gabriel@gabriel.com");
             Assert.IsFalse(customer.IsValid());
         }
 
