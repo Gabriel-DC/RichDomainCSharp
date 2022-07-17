@@ -43,7 +43,6 @@ namespace Store.Domain.Entities
             return this;
         }
 
-
         public void ClearAllNotifications(params Entity[]? entities)
         {
             foreach (var entity in entities!)
