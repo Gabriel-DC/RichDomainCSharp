@@ -8,7 +8,7 @@ namespace Store.Tests.Repositories
 {
     public class FakeProductRepository : IProductRepository
     {
-        public IEnumerable<Product>? Get(IEnumerable<Guid>? ids)
+        public IEnumerable<Product> Get(IEnumerable<Guid>? ids)
         {
             if (ids is null)
                 return new List<Product>();
