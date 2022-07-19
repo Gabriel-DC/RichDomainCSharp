@@ -51,9 +51,9 @@ namespace Store.Tests.Queries
         [TestCategory("Queries")]
         public void Dado_a_consulta_de_todos_os_clientes_deve_retornar_3_clientes()
         {
-            var customers = _customerRepository.GetAll();
+            var customers = _customerRepository.GetAll().ToList();
 
-            Assert.AreEqual(3, customers.Count());
+            Assert.AreEqual(3, customers.Count);
         }
 
         [TestMethod]
