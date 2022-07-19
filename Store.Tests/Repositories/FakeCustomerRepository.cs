@@ -12,5 +12,15 @@ namespace Store.Tests.Repositories
             email == "gabriel@gabriel.com"
                 ? new Customer("Gabriel Almeida", "gabriel@gabriel.com")
                 : null;
+
+        public IEnumerable<Customer> GetAll()
+        {
+            return new List<Customer>
+            {
+                new Customer("João Pedro", "joao@joao.com"),
+                new Customer("Gabriel Almeida", "gabriel@gabriel.com"),
+                new Customer("Maria", "maria@maria.com")
+            };
+        }
     }
 }

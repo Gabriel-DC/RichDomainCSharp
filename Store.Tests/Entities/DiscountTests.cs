@@ -48,5 +48,21 @@ namespace Store.Tests.Entities
             var invalidDiscount = new Discount(10, DateTime.Now, null!);
             Assert.IsFalse(invalidDiscount.IsValid());
         }
+
+        [TestMethod]
+        [TestCategory("Domain")]
+        public void Dado_um_desconto_com_valor_de_desconto_igual_a_0_o_mesmo_deve_ser_invalido()
+        {
+            var invalidDiscount = new Discount(0, DateTime.Now, "CUPOM10");
+            Assert.IsFalse(invalidDiscount.IsValid());
+        }
+
+        [TestMethod]
+        [TestCategory("Domain")]
+        public void Dado_um_desconto_com_valor_de_desconto_menor_que_0_o_mesmo_deve_ser_invalido()
+        {
+            var invalidDiscount = new Discount(-10, DateTime.Now, "CUPOM10");
+            Assert.IsFalse(invalidDiscount.IsValid());
+        }
     }
 }

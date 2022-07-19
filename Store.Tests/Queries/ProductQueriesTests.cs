@@ -13,7 +13,7 @@ namespace Store.Tests.Queries
 
         [TestMethod]
         [TestCategory("Queries")]
-        public void Dado_a_consulta_de_produtos_ativos_deve_retornar_3()
+        public void Dado_a_consulta_de_produtos_ativos_deve_retornar_3_produtos()
         {
             var activeProducts = _productRepository.Get(new List<Guid>())
                 .AsQueryable()
@@ -25,7 +25,7 @@ namespace Store.Tests.Queries
 
         [TestMethod]
         [TestCategory("Queries")]
-        public void Dado_a_consulta_de_produtos_inativos_deve_retornar_2()
+        public void Dado_a_consulta_de_produtos_inativos_deve_retornar_2_produtos()
         {
             var inactiveProducts = _productRepository.Get(new List<Guid>())
                 .AsQueryable()
@@ -33,6 +33,17 @@ namespace Store.Tests.Queries
                 .ToList();
 
             Assert.AreEqual(2, inactiveProducts.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Queries")]
+        public void Dado_a_consulta_de_produtos_ativos_e_inativos_deve_retornar_5_produtos()
+        {
+            var activeAndInactiveProducts = _productRepository.Get(new List<Guid>())
+                .AsQueryable()
+                .ToList();
+
+            Assert.AreEqual(5, activeAndInactiveProducts.Count);
         }
     }
 }

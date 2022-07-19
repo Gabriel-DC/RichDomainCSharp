@@ -138,5 +138,13 @@ namespace Store.Tests.Entities
             order.AddItem(_product, 5);
             Assert.IsFalse(order.IsValid());
         }
+
+        [TestMethod]
+        [TestCategory("Domain")]
+        public void Dado_um_pedido_sem_itens_o_mesmo_deve_ser_invalido()
+        {
+            var order = new Order(_customer, 0, _discount);
+            Assert.IsFalse(order.IsValid());
+        }
     }
 }
