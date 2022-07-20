@@ -39,7 +39,6 @@ namespace Store.Tests.Handlers
                 }
             );
 
-
             var handler = new OrderHandler(
                 _customerRepository,
                 _orderRepository,
@@ -66,7 +65,6 @@ namespace Store.Tests.Handlers
                     new CreateOrderItemCommand(Guid.Empty, 1)
                 }
             );
-
 
             var handler = new OrderHandler(
                 _customerRepository,
@@ -146,7 +144,6 @@ namespace Store.Tests.Handlers
                 zipCode: "12345678",
                 items: new List<CreateOrderItemCommand>()
             );
-
 
             var handler = new OrderHandler(
                 _customerRepository,
