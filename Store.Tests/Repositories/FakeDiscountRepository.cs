@@ -17,5 +17,14 @@ namespace Store.Tests.Repositories
             else
                 return null;
         }
+
+        public IEnumerable<Discount> GetAll()
+        {
+            return new List<Discount>
+            {
+                new Discount(10, DateTime.Now.AddDays(5), "CUPOM10"),
+                new Discount(10, DateTime.Now.AddMonths(-1), "CUPOMJULHO10")
+            };
+        }
     }
 }

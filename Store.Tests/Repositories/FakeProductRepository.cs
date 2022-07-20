@@ -13,13 +13,27 @@ namespace Store.Tests.Repositories
             if (ids is null)
                 return new List<Product>();
 
-            IList<Product> products = new List<Product>();
-            products.Add(new Product("Produto 01", 10, true));
-            products.Add(new Product("Produto 02", 10, true));
-            products.Add(new Product("Produto 03", 10, true));
-            products.Add(new Product("Produto 04", 10, false));
-            products.Add(new Product("Produto 05", 10, false));
+            IList<Product> products = new List<Product>()
+            {
+                new Product("Produto 01", 10, true),
+                new Product("Produto 02", 10, true),
+                new Product("Produto 03", 10, true),
+                new Product("Produto 04", 10, false),
+                new Product("Produto 05", 10, false)
+            };
+            return products;
+        }
 
+        public IEnumerable<Product> GetAll()
+        {
+            IList<Product> products = new List<Product>()
+            {
+                new Product("Produto 01", 10, true),
+                new Product("Produto 02", 10, true),
+                new Product("Produto 03", 10, true),
+                new Product("Produto 04", 10, false),
+                new Product("Produto 05", 10, false)
+            };
             return products;
         }
     }
