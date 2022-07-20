@@ -60,6 +60,6 @@ namespace Store.Domain.Handlers
                 success, success ? $"Pedido {order.Number} realizado com sucesso" : "Erro ao realizar o pedido",
                  success ? order : order.ValidationResults
             );
-        }
+        }                      
     }
 }

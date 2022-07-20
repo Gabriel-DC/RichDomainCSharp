@@ -39,7 +39,6 @@ namespace Store.Tests.Handlers
                 }
             );
 
-            Assert.IsFalse(command.Validate().IsValid);
 
             var handler = new OrderHandler(
                 _customerRepository,
@@ -50,7 +49,7 @@ namespace Store.Tests.Handlers
             );
 
             var result = handler.Handle(command);
-
+            Assert.IsFalse(command.Validate().IsValid);
             Assert.IsFalse(result.Success);
         }
 
@@ -68,7 +67,6 @@ namespace Store.Tests.Handlers
                 }
             );
 
-            Assert.IsFalse(command.Validate().IsValid);
 
             var handler = new OrderHandler(
                 _customerRepository,
@@ -79,7 +77,7 @@ namespace Store.Tests.Handlers
             );
 
             var result = handler.Handle(command);
-
+            Assert.IsFalse(command.Validate().IsValid);
             Assert.IsFalse(result.Success);
         }
 
@@ -136,6 +134,31 @@ namespace Store.Tests.Handlers
 
             Assert.IsNotNull(order?.Discount);
             Assert.IsTrue(result.Success);
+        }
+
+        [TestMethod]
+        [TestCategory("Handlers")]
+        public void Dado_um_cliente_existente_e_um_produto_existente_e_um_cupom_de_desconto_existente_e_sem_itens_o_pedido_nao_deve_ser_criado()
+        {
+            var command = new CreateOrderCommand(
+                customerId: Guid.NewGuid(),
+                promoCode: "CUPOM10",
+                zipCode: "12345678",
+                items: new List<CreateOrderItemCommand>()
+            );
+
+
+            var handler = new OrderHandler(
+                _customerRepository,
+                _orderRepository,
+                _productRepository,
+                _discountRepository,
+                _deliveryFeeRepository
+            );
+
+            var result = handler.Handle(command);
+            Assert.IsFalse(command.Validate().IsValid);
+            Assert.IsFalse(result.Success);
         }
     }
 }
