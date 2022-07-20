@@ -13,6 +13,11 @@ namespace Store.Tests.Repositories
                 ? new Customer("Gabriel Almeida", "gabriel@gabriel.com")
                 : null;
 
+        public Customer? Get(Guid id) =>
+            id != Guid.Empty
+                ? new Customer("Gabriel Almeida", "gabriel@gabriel.com")
+                : null;
+
         public IEnumerable<Customer> GetAll()
         {
             return new List<Customer>

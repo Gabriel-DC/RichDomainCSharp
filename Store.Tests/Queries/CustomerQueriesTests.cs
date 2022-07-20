@@ -77,5 +77,21 @@ namespace Store.Tests.Queries
             Assert.AreEqual("João Pedro", orderedByEmailCustomer.Skip(1).First().Name);
             Assert.AreEqual("Maria", orderedByEmailCustomer.Skip(2).First().Name);
         }
+
+        [TestMethod]
+        [TestCategory("Queries")]
+        public void Dado_a_consulta_de_um_cliente_por_guid_retornar_um_cliente()
+        {
+            var customer = _customerRepository.Get(Guid.NewGuid());
+            Assert.IsNotNull(customer);
+        }
+
+        [TestMethod]
+        [TestCategory("Queries")]
+        public void Dado_a_consulta_de_um_cliente_por_guid_vazio_deve_retornar_nulo()
+        {
+            var customer = _customerRepository.Get(Guid.Empty);
+            Assert.IsNull(customer);
+        }
     }
 }

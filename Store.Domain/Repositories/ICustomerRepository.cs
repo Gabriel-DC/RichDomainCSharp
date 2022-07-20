@@ -9,6 +9,7 @@ namespace Store.Domain.Repositories
     public interface ICustomerRepository
     {
         Customer? Get(string email);
+        Customer? Get(Guid id);
         IEnumerable<Customer> GetAll();
     }
 }
