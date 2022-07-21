@@ -18,5 +18,11 @@ namespace Store.Domain.Entities
         public string? Email { get; private set; }
 
         public string? Document { get; private set; }
+
+
+        public void SetEmail(string email)
+        {
+            Email = email?.Trim();
+        }
     }
 }
