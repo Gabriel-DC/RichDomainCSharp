@@ -26,13 +26,13 @@ namespace Store.Domain.Handlers
             _productRepository = productRepository;
             _discountRepository = discountRepository;
             _deliveryFeeRepository = deliveryFeeRepository;
-        }
+        }    
 
         public ICommandResult Handle(CreateOrderCommand command)
         {
             var validation = command.Validate();
             if (!validation.IsValid)
-                return new GenericCommandResult(false, "Pedido inválido", validation.Errors);
+                return new GenericCommandResult(false, "Pedido inválido", validation);
 
             var customer = _customerRepository.Get(command.CustomerId);
             if (customer == null)
@@ -59,3 +59,4 @@ namespace Store.Domain.Handlers
         }
     }
 }
+

@@ -11,5 +11,7 @@ namespace Store.Domain.Repositories
         Customer? Get(string email);
         Customer? Get(Guid id);
         IEnumerable<Customer> GetAll();
+
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }
