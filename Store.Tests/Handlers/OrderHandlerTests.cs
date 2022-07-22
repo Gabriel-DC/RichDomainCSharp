@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Store.Domain.Handlers;
 
@@ -84,7 +85,7 @@ namespace Store.Tests.Handlers
         public void Dado_um_cliente_existente_e_um_produto_existente_e_um_cupom_de_desconto_inexistente_o_pedido_deve_ser_criado()
         {
             var command = new CreateOrderCommand(
-                customerId: Guid.NewGuid(),
+                customerId: _customerRepository.Customers.First().Id,
                 promoCode: "CUPOM1000",
                 zipCode: "12345678",
                 items: new List<CreateOrderItemCommand>()
@@ -110,7 +111,7 @@ namespace Store.Tests.Handlers
         public void Dado_um_cliente_existente_e_um_produto_existente_e_um_cupom_de_desconto_existente_o_pedido_deve_ser_criado()
         {
             var command = new CreateOrderCommand(
-                customerId: Guid.NewGuid(),
+                customerId: _customerRepository.Customers.First().Id,
                 promoCode: "CUPOM10",
                 zipCode: "12345678",
                 items: new List<CreateOrderItemCommand>()
@@ -139,7 +140,7 @@ namespace Store.Tests.Handlers
         public void Dado_um_cliente_existente_e_um_produto_existente_e_um_cupom_de_desconto_existente_e_sem_itens_o_pedido_nao_deve_ser_criado()
         {
             var command = new CreateOrderCommand(
-                customerId: Guid.NewGuid(),
+                customerId: _customerRepository.Customers.First().Id,
                 promoCode: "CUPOM10",
                 zipCode: "12345678",
                 items: new List<CreateOrderItemCommand>()
@@ -154,8 +155,40 @@ namespace Store.Tests.Handlers
             );
 
             var result = handler.Handle(command);
+            var validationResult = result.Data as ValidationResult;
+            Assert.IsFalse(validationResult!.IsValid);
             Assert.IsFalse(command.Validate().IsValid);
             Assert.IsFalse(result.Success);
+        }
+
+        [TestMethod]
+        [TestCategory("Handlers")]
+        public void Dado_um_cliente_inexistente_e_um_produto_existente_e_um_cupom_de_desconto_existente_e_itens_o_pedido_nao_deve_ser_criado()
+        {
+            var command = new CreateOrderCommand(
+                customerId: Guid.NewGuid(),
+                promoCode: "CUPOM10",
+                zipCode: "12345678",
+                items: new List<CreateOrderItemCommand>()
+                {
+                    new CreateOrderItemCommand(_productRepository.Products.First().Id, 1)
+                }
+            );
+
+            var handler = new OrderHandler(
+                _customerRepository,
+                _orderRepository,
+                _productRepository,
+                _discountRepository,
+                _deliveryFeeRepository
+            );
+
+            var result = handler.Handle(command);
+            
+            Assert.IsTrue(command.Validate().IsValid);
+                        
+            Assert.IsFalse(result.Success);
+            Assert.IsNull(result.Data);
         }
     }
 }

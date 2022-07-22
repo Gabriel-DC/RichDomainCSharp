@@ -8,15 +8,24 @@ namespace Store.Tests.Repositories
 {
     public class FakeCustomerRepository : ICustomerRepository
     {
+
+        public FakeCustomerRepository()
+        {
+            Customers = new List<Customer>
+            {
+                new Customer("Gabriel Almeida", "gabriel@gabriel.com"),
+            };
+        }
+        
+        public IEnumerable<Customer> Customers { get; set; }
+
         public Customer? Get(string email) =>
             email == "gabriel@gabriel.com"
                 ? new Customer("Gabriel Almeida", "gabriel@gabriel.com")
                 : null;
 
         public Customer? Get(Guid id) =>
-            id != Guid.Empty
-                ? new Customer("Gabriel Almeida", "gabriel@gabriel.com")
-                : null;
+            Customers.FirstOrDefault(c => c.Id == id);
 
         public IEnumerable<Customer> GetAll()
         {

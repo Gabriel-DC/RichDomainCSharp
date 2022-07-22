@@ -80,9 +80,9 @@ namespace Store.Tests.Queries
 
         [TestMethod]
         [TestCategory("Queries")]
-        public void Dado_a_consulta_de_um_cliente_por_guid_retornar_um_cliente()
+        public void Dado_a_consulta_de_um_cliente_existente_por_guid_retornar_um_cliente()
         {
-            var customer = _customerRepository.Get(Guid.NewGuid());
+            var customer = _customerRepository.Get(_customerRepository.Customers.First().Id);
             Assert.IsNotNull(customer);
         }
 
@@ -91,6 +91,14 @@ namespace Store.Tests.Queries
         public void Dado_a_consulta_de_um_cliente_por_guid_vazio_deve_retornar_nulo()
         {
             var customer = _customerRepository.Get(Guid.Empty);
+            Assert.IsNull(customer);
+        }
+
+        [TestMethod]
+        [TestCategory("Queries")]
+        public void Dado_a_consulta_de_um_cliente_inexistente_por_guid__deve_retornar_nulo()
+        {
+            var customer = _customerRepository.Get(Guid.NewGuid());
             Assert.IsNull(customer);
         }
     }
