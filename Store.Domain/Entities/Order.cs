@@ -12,8 +12,7 @@ namespace Store.Domain.Entities
             Number = Guid.NewGuid().ToString().Substring(0, 8);
             Status = EOrderStatus.WaitingPayment;
             DeliveryFee = deliveryFee;
-            Discount = discount;
-            Items = new List<OrderItem>();            
+            Discount = discount;                      
         }
 
         [Required(ErrorMessage = "Cliente inválido")]
@@ -24,14 +23,16 @@ namespace Store.Domain.Entities
         public Discount? Discount { get; private set; }
         public string Number { get; private set; }
 
+        private readonly List<OrderItem> _items = new();
+
         [MinLength(1, ErrorMessage = "O pedido não possui itens")]
-        public IList<OrderItem> Items { get; private set; }
+        public IReadOnlyCollection<OrderItem> Items => _items;
 
         public void AddItem(Product product, int quantity)
         {
             var item = new OrderItem(product, quantity);
             if (item.IsValid())
-                Items.Add(item);
+                _items.Add(item);
         }
 
         public decimal Total()
