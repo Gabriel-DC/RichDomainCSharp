@@ -4,6 +4,13 @@ namespace Store.Domain.Entities
 {
     public class Customer : Entity
     {
+        public Customer(string name, string email, string document)
+        {
+            Name = name?.Trim();
+            Email = email?.Trim();
+            Document = document?.Trim();
+        }
+
         public Customer(string name, string email)
         {
             Name = name?.Trim();

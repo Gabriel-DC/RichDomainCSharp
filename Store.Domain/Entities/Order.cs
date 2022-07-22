@@ -13,9 +13,7 @@ namespace Store.Domain.Entities
             Status = EOrderStatus.WaitingPayment;
             DeliveryFee = deliveryFee;
             Discount = discount;
-            Items = new List<OrderItem>();
-
-            ValidateEntities(customer, discount!);
+            Items = new List<OrderItem>();            
         }
 
         [Required(ErrorMessage = "Cliente inválido")]

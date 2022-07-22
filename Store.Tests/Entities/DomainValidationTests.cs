@@ -62,42 +62,32 @@ namespace Store.Tests.Entities
 
         [TestMethod]
         [TestCategory("Domain Validation")]
-        public void Dado_uma_ou_mais_entidades_invalidas_()
+        public void Dado_uma_ou_mais_entidades_invalidas_agrupar_notificoes_em_uma_entidade()
         {
-            var customer = new Customer("", "");
-            var order = new Order(null!, 0, null!);
-            var product = new Product("", 0, false);
+            var customer = new Customer("Gabriel Almeida", "gabriel@gabriel.com");
+            var invalidDiscount = new Discount(10, DateTime.Now, "");
+            var order = new Order(customer, 0, invalidDiscount);
 
-            Assert.IsTrue(customer.Validate().Results.Count > 0);
-            Assert.IsTrue(order.Validate().Results.Count > 0);
-            Assert.IsTrue(product.Validate().Results.Count > 0);
+            customer.Validate();
+            invalidDiscount.Validate();
 
-            DomainNotifiable.ClearAllNotifications(customer, order, product);
+            order.AgroupNotifications(customer, invalidDiscount);
 
-            Assert.AreEqual(0, customer.ValidationResults.Count);
-            Assert.AreEqual(0, order.ValidationResults.Count);
-            Assert.AreEqual(0, product.ValidationResults.Count);
+            //Assert.IsTrue(order.ValidationResults.Count > 0);
+            Assert.IsFalse(order.Valid);
         }
 
         [TestMethod]
         [TestCategory("Domain Validation")]
-        public void Dado_uma_ou_mais_entidades_invalidas_agrupar_notificoes_em_uma_entidade()
+        public void Dado_uma_ou_mais_entidades_invalidas_validar_notificoes_em_uma_entidade_pai()
         {
-            var customer = new Customer("", "");
-            var order = new Order(null!, 0, null!);
-            var product = new Product("", 0, false);
+            var customer = new Customer("Gabriel Almeida", "gabriel@gabriel.com");
+            var invalidDiscount = new Discount(10, DateTime.Now, "");
+            var order = new Order(customer, 0, invalidDiscount);
+
+            order.ValidateEntities(customer, invalidDiscount);
             
-            
-
-            Assert.IsTrue(customer.Validate().Results.Count > 0);
-            Assert.IsTrue(order.Validate().Results.Count > 0);
-            Assert.IsTrue(product.Validate().Results.Count > 0);
-
-            DomainNotifiable.ClearAllNotifications(customer, order, product);
-
-            Assert.AreEqual(0, customer.ValidationResults.Count);
-            Assert.AreEqual(0, order.ValidationResults.Count);
-            Assert.AreEqual(0, product.ValidationResults.Count);
+            Assert.IsFalse(order.Valid);
         }
     }
 }
