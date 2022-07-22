@@ -20,7 +20,7 @@ namespace Store.Domain.Entities
         public Customer Customer { get; private set; }
         public DateTime Date { get; private set; }
         public EOrderStatus Status { get; private set; }
-        public decimal DeliveryFee { get; set; }
+        public decimal DeliveryFee { get; private set; }
         public Discount? Discount { get; private set; }
         public string Number { get; private set; }
 

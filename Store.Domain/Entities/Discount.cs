@@ -19,7 +19,7 @@ namespace Store.Domain.Entities
         public DateTime ExpireDate { get; private set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Cupom inválido")]
-        public string PromotionCode { get; set; }
+        public string PromotionCode { get; private set; }
 
         public bool IsExpired()
             => DateTime.Compare(DateTime.Now, ExpireDate) > 0;
