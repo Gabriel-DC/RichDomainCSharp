@@ -12,4 +12,5 @@ Utilizei também o pacote Fluent Validation para a validação dos commands
 
 Utilizei o SonarQube para fazer uma análise refinada para o meu código:
 
-![image](https://user-images.githubusercontent.com/57327840/180348620-64b5cd80-d1c4-46a6-88ce-9dfea995ce6b.png)
+![image](https://user-images.githubusercontent.com/57327840/180433106-43e4a257-1f71-4ff8-b954-fe24376f5cae.png)
+
