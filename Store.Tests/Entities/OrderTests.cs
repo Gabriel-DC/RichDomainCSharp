@@ -48,6 +48,7 @@ namespace Store.Tests.Entities
             var order = new Order(_customer, 0, _discount);
             Assert.AreEqual(order.Status, EOrderStatus.WaitingPayment);
         }
+        
         [TestMethod]
         [TestCategory("Domain")]
         public void Dado_um_de_um_pedido_seu_status_deve_ser_aguardando_entrega()

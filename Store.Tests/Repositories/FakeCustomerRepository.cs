@@ -8,7 +8,6 @@ namespace Store.Tests.Repositories
 {
     public class FakeCustomerRepository : ICustomerRepository
     {
-
         public FakeCustomerRepository()
         {
             Customers = new List<Customer>
