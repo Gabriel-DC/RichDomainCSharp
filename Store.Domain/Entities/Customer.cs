@@ -4,6 +4,13 @@ namespace Store.Domain.Entities
 {
     public class Customer : Entity
     {
+        public Customer(string name, string email, string document)
+        {
+            Name = name?.Trim();
+            Email = email?.Trim();
+            Document = document?.Trim();
+        }
+
         public Customer(string name, string email)
         {
             Name = name?.Trim();
@@ -18,5 +25,11 @@ namespace Store.Domain.Entities
         public string? Email { get; private set; }
 
         public string? Document { get; private set; }
+
+
+        public void SetEmail(string email)
+        {
+            Email = email?.Trim();
+        }
     }
 }

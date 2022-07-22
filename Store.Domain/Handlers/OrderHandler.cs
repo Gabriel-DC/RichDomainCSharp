@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Store.Domain.Commands;
 using Store.Domain.Commands.Interfaces;
 using Store.Domain.Entities;
@@ -60,6 +56,6 @@ namespace Store.Domain.Handlers
                 success, success ? $"Pedido {order.Number} realizado com sucesso" : "Erro ao realizar o pedido",
                  success ? order : order.ValidationResults
             );
-        }                      
+        }
     }
 }

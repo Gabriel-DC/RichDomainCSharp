@@ -357,3 +357,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Sonar .bat file
+sonar-scanner.bat
+
+# Coverage files for SonarQube
+coverage.xml

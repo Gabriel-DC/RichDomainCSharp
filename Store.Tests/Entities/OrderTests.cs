@@ -26,11 +26,11 @@ namespace Store.Tests.Entities
 
         [TestMethod]
         [TestCategory("Domain")]
-        public void Dado_um_pedido_desconto_com_cupom_invalido_o_pedido_deve_ser_invalido()
+        public void Dado_um_pedido_desconto_com_cupom_invalido_o_pedido_deve_ser_valido()
         {
             var order = new Order(_customer, 0, _invalidDiscount);
             order.AddItem(_product, 1);
-            Assert.IsFalse(order.IsValid());
+            Assert.IsTrue(order.IsValid());
         }
 
         [TestMethod]

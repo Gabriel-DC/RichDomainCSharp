@@ -18,7 +18,7 @@ namespace Store.Tests.Repositories
                 return null;
         }
 
-        public IEnumerable<Discount> GetAll()
+        public static IEnumerable<Discount> GetAll()
         {
             return new List<Discount>
             {

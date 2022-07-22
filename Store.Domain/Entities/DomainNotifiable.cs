@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Entities
 {
-    public class DomainNotifiable
+    public abstract class DomainNotifiable
     {
         private readonly List<ValidationResult> _validationResults = new();
+        
         public bool Valid => ValidationResults.Count == 0;
 
         public IReadOnlyCollection<ValidationResult> ValidationResults => _validationResults;
@@ -43,7 +44,7 @@ namespace Store.Domain.Entities
             return this;
         }
 
-        public void ClearAllNotifications(params Entity[]? entities)
+        public static void ClearAllNotifications(params Entity[]? entities)
         {
             foreach (var entity in entities!)
                 entity.ClearNotifications();
@@ -55,13 +56,7 @@ namespace Store.Domain.Entities
                 _validationResults.AddRange(validations);
         }
 
-        public void AddNotifications(ICollection<ValidationResult> validations)
-        {
-            if (validations is not null)
-                _validationResults.AddRange(validations);
-        }
-
-        public void AddNotifications(IReadOnlyCollection<ValidationResult> validations)
+        public void AddNotifications(IEnumerable<ValidationResult> validations)
         {
             if (validations is not null)
                 _validationResults.AddRange(validations);

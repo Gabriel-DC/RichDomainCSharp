@@ -64,5 +64,14 @@ namespace Store.Tests.Entities
             var customer = new Customer(null!, null!);
             Assert.IsFalse(customer.IsValid());
         }
+
+        [TestMethod]
+        [TestCategory("Domain")]
+        public void Dado_um_cliente_com_o_nome_email_e_documento_valido_o_mesmo_deve_ser_valido()
+        {
+            var customer = new Customer("Gabriel Almeida", "gabriel@gabriel.com", "123.456.789-00");
+
+            Assert.IsTrue(customer.IsValid());
+        }
     }
 }
