@@ -47,7 +47,7 @@ namespace Store.Domain.Commands
 
                 RuleForEach(r => r.Items)
                     .NotEmpty()
-                    .SetValidator(new CreateOrderItemCommand.CreateOrderItemCommandValidator());
+                    .SetValidator(new CreateOrderItemCommandValidator());
             }
         }
     }

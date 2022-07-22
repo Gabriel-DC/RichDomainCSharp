@@ -27,8 +27,8 @@ namespace Store.Domain.Commands
             {
                 RuleFor(c => c.ProductId)
                     .NotNull()
-                    .NotEmpty()
-                    .Configure(c => c.MessageBuilder = _ => "Produto obrigatório");
+                    .NotEmpty()                    
+                    .Configure(c => c.MessageBuilder = _ => $"Produto obrigatório");
 
                 RuleFor(c => c.Quantity)
                     .GreaterThan(0)
