@@ -72,8 +72,7 @@ namespace Store.Tests.Entities
             invalidDiscount.Validate();
 
             order.AgroupNotifications(customer, invalidDiscount);
-
-            //Assert.IsTrue(order.ValidationResults.Count > 0);
+            
             Assert.IsFalse(order.Valid);
         }
 
