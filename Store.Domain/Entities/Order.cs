@@ -9,7 +9,7 @@ namespace Store.Domain.Entities
         {
             Customer = customer;
             Date = DateTime.Now;
-            Number = Guid.NewGuid().ToString().Substring(0, 8);
+            Number = Guid.NewGuid().ToString()[..8];
             Status = EOrderStatus.WaitingPayment;
             DeliveryFee = deliveryFee;
             Discount = discount;                      
