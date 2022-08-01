@@ -36,7 +36,7 @@ namespace Store.Tests.Commands
                 "",
                 new List<CreateOrderItemCommand>()
                 {
-                    new CreateOrderItemCommand(Guid.NewGuid(), 1 ),
+                    new CreateOrderItemCommand(Guid.NewGuid(), 1),
                     new CreateOrderItemCommand(Guid.NewGuid(), 2)
                 });
             Assert.IsTrue(command.Validate().IsValid);

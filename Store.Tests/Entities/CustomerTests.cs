@@ -72,6 +72,6 @@ namespace Store.Tests.Entities
             var customer = new Customer("Gabriel Almeida", "gabriel@gabriel.com", "123.456.789-00");
 
             Assert.IsTrue(customer.IsValid());
-        }
+        }        
     }
 }
